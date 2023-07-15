@@ -119,41 +119,32 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
             <div className="my-10 flex flex-col gap-4">
               <Input
                 id="fullName"
-                name="fullName"
                 size="lg"
                 label="Full Name"
                 color="brown"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.fullName}
+                {...formik.getFieldProps("fullName")}
               />
               {formik.touched.fullName && formik.errors.fullName ? (
                 <ErrorMessage message={formik.errors.fullName} />
               ) : null}
               <Input
                 id="email"
-                name="email"
                 type="email"
                 size="lg"
                 label="Email"
                 color="brown"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
+                {...formik.getFieldProps("email")}
               />
               {formik.touched.email && formik.errors.email ? (
                 <ErrorMessage message={formik.errors.email} />
               ) : null}
               <Input
                 id="confirmEmail"
-                name="confirmEmail"
                 type="email"
                 size="lg"
                 label="Confirm Email"
                 color="brown"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.confirmEmail}
+                {...formik.getFieldProps("confirmEmail")}
               />
               {formik.touched.confirmEmail && formik.errors.confirmEmail ? (
                 <ErrorMessage message={formik.errors.confirmEmail} />
