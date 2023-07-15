@@ -35,7 +35,7 @@ const validate = (values: FormValues) => {
 // ModalContent Component
 const ModalContent = ({ handleClose }: ModalContentProps) => {
   const [serverError, setServerError] = useState<string>("");
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [isSending, setIsSending] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const title = success ? " All done!" : "Request an invite";
 
@@ -69,17 +69,17 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
     },
     validate,
     onSubmit: async (values: FormValues) => {
-      setIsProcessing(true);
+      setIsSending(true);
 
       try {
         const response = await registerInvites(values);
 
         if (response.status === 200) {
           setSuccess(true);
-          setIsProcessing(false);
+          setIsSending(false);
         } else if (response.status === 400) {
           const message = await response.json();
-          setIsProcessing(false);
+          setIsSending(false);
           setServerError(message.errorMessage);
         }
       } catch (err) {
@@ -153,18 +153,18 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
             <button
               className="p-1 border-2 border-stone-500 w-full mx-auto text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded-md font-bold"
               type="submit"
-              disabled={isProcessing}
+              disabled={isSending}
             >
-              {isProcessing ? (
+              {isSending ? (
                 <div className="flex flex-row items-center align-middle justify-center gap-x-2">
                   <Spinner
                     className="text-stone-200 hover:text-white"
                     color="brown"
                   />
-                  Processing...
+                  Sending, please wait...
                 </div>
               ) : (
-                <span>Register</span>
+                <span>Send</span>
               )}
             </button>
           </form>
