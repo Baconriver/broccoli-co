@@ -1,9 +1,5 @@
 export type ModalContentProps = {
-  // success: boolean;
-  // title: string;
-  // bodyText?: string;
   handleClose: () => void;
-  // handleSubmit?: () => void;
 };
 
 export type ErrorMessageProps = {
