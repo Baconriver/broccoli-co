@@ -1,15 +1,12 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import NavBar from "./components/NavBar";
-import Body from "./components/Body";
+import MainBody from "./components/MainBody";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="flex w-full h-screen flex-col ">
       <NavBar />
-      <Body />
+      <MainBody />
       <Footer />
     </div>
   );

@@ -1,3 +1,4 @@
+// NavBar Component
 const NavBar = () => {
   return (
     <nav className="h-18 py-2 px-4 lg:px-8 lg:py-4 lg:h-24 border-b-2">
