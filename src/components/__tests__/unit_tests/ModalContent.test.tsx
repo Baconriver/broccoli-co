@@ -1,10 +1,4 @@
-import {
-  render,
-  screen,
-  cleanup,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import ModalContent from "../../ModalContent";
 import user from "@testing-library/user-event";
 import { rest } from "msw";
