@@ -34,7 +34,7 @@ const validate = (values: FormValues) => {
 
 // ModalContent Component
 const ModalContent = ({ handleClose }: ModalContentProps) => {
-  const [serverError, setServerError] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const [isSending, setIsSending] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const title = success ? " All done!" : "Request an invite";
@@ -80,10 +80,10 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
         } else if (response.status === 400) {
           const message = await response.json();
           setIsSending(false);
-          setServerError(message.errorMessage);
+          setError(message.errorMessage);
         }
       } catch (err) {
-        setServerError("Something is going wrong!");
+        setError("Something is going wrong!");
         throw new Error("Something is going wrong!");
       }
     },
@@ -111,6 +111,7 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
               launch.
             </div>
             <button
+              data-testid="modal-button"
               className="p-1 border-2 border-stone-500 w-full mx-auto text-sm md:text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded font-bold"
               onClick={closeModal}
             >
@@ -176,7 +177,7 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
                 )}
               </button>
             </form>
-            {serverError && <ErrorMessage message={serverError} />}
+            {error && <ErrorMessage message={error} />}
           </>
         )}
       </div>
