@@ -95,82 +95,91 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
   };
 
   return (
-    <div className="flex flex-col text-stone-500">
-      <span className="text-center text-2xl italic font-bold mb-4">
+    <div data-testid="modal-content" className="flex flex-col text-stone-500">
+      <span
+        data-testid="modal-content-title"
+        className="text-center text-2xl italic font-bold mb-4"
+      >
         {title}
       </span>
       <hr className="w-10 mx-auto border-stone-500 border-t-2" />
-      {success ? (
-        <>
-          <span className="text-center my-10">
-            You will be one of the first to experience Broccoli & Co. when we
-            launch.
-          </span>
-          <button
-            className="p-1 border-2 border-stone-500 w-full mx-auto text-sm md:text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded font-bold"
-            onClick={closeModal}
-          >
-            OK
-          </button>
-        </>
-      ) : (
-        <>
-          <form className="w-full mb-4" onSubmit={formik.handleSubmit}>
-            <div className="my-10 flex flex-col gap-4">
-              <Input
-                id="fullName"
-                size="lg"
-                label="Full Name"
-                color="brown"
-                {...formik.getFieldProps("fullName")}
-              />
-              {formik.touched.fullName && formik.errors.fullName ? (
-                <ErrorMessage message={formik.errors.fullName} />
-              ) : null}
-              <Input
-                id="email"
-                type="email"
-                size="lg"
-                label="Email"
-                color="brown"
-                {...formik.getFieldProps("email")}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <ErrorMessage message={formik.errors.email} />
-              ) : null}
-              <Input
-                id="confirmEmail"
-                type="email"
-                size="lg"
-                label="Confirm Email"
-                color="brown"
-                {...formik.getFieldProps("confirmEmail")}
-              />
-              {formik.touched.confirmEmail && formik.errors.confirmEmail ? (
-                <ErrorMessage message={formik.errors.confirmEmail} />
-              ) : null}
-            </div>
+      <div data-testid="modal-content-body">
+        {success ? (
+          <>
+            <span className="text-center my-10">
+              You will be one of the first to experience Broccoli & Co. when we
+              launch.
+            </span>
             <button
-              className="p-1 border-2 border-stone-500 w-full mx-auto text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded-md font-bold"
-              type="submit"
-              disabled={isSending}
+              className="p-1 border-2 border-stone-500 w-full mx-auto text-sm md:text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded font-bold"
+              onClick={closeModal}
             >
-              {isSending ? (
-                <div className="flex flex-row items-center align-middle justify-center gap-x-2">
-                  <Spinner
-                    className="text-stone-200 hover:text-white"
-                    color="brown"
-                  />
-                  Sending, please wait...
-                </div>
-              ) : (
-                <span>Send</span>
-              )}
+              OK
             </button>
-          </form>
-          {serverError && <ErrorMessage message={serverError} />}
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <form className="w-full mb-4" onSubmit={formik.handleSubmit}>
+              <div className="my-10 flex flex-col gap-4">
+                <Input
+                  data-testid="input-full-name"
+                  id="fullName"
+                  size="lg"
+                  label="Full Name"
+                  color="brown"
+                  {...formik.getFieldProps("fullName")}
+                />
+                {formik.touched.fullName && formik.errors.fullName ? (
+                  <ErrorMessage message={formik.errors.fullName} />
+                ) : null}
+                <Input
+                  data-testid="input-email"
+                  id="email"
+                  type="email"
+                  size="lg"
+                  label="Email"
+                  color="brown"
+                  {...formik.getFieldProps("email")}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <ErrorMessage message={formik.errors.email} />
+                ) : null}
+                <Input
+                  data-testid="input-confirm-email"
+                  id="confirmEmail"
+                  type="email"
+                  size="lg"
+                  label="Confirm Email"
+                  color="brown"
+                  {...formik.getFieldProps("confirmEmail")}
+                />
+                {formik.touched.confirmEmail && formik.errors.confirmEmail ? (
+                  <ErrorMessage message={formik.errors.confirmEmail} />
+                ) : null}
+              </div>
+              <button
+                data-testid="modal-button"
+                className="p-1 border-2 border-stone-500 w-full mx-auto text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded-md font-bold"
+                type="submit"
+                disabled={isSending}
+              >
+                {isSending ? (
+                  <div className="flex flex-row items-center align-middle justify-center gap-x-2">
+                    <Spinner
+                      className="text-stone-200 hover:text-white"
+                      color="brown"
+                    />
+                    Sending, please wait...
+                  </div>
+                ) : (
+                  <span>Send</span>
+                )}
+              </button>
+            </form>
+            {serverError && <ErrorMessage message={serverError} />}
+          </>
+        )}
+      </div>
     </div>
   );
 };
