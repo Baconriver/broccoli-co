@@ -32,7 +32,7 @@ const MainBody = () => {
         </span>
         <button
           data-testid="main-body-button"
-          className="p-2 border-2 border-stone-500 w-32 md:w-48 mx-auto text-sm md:text-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-stone-500 hover:text-white duration-500 rounded"
+          className="p-2 border-2 border-stone-500 w-40 md:w-48 mx-auto text-sm md:text-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:bg-stone-500 hover:text-white duration-500 rounded"
           onClick={handleOpen}
         >
           Request an invite
