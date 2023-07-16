@@ -106,10 +106,10 @@ const ModalContent = ({ handleClose }: ModalContentProps) => {
       <div data-testid="modal-content-body">
         {success ? (
           <>
-            <span className="text-center my-10">
+            <div className="text-center my-10">
               You will be one of the first to experience Broccoli & Co. when we
               launch.
-            </span>
+            </div>
             <button
               className="p-1 border-2 border-stone-500 w-full mx-auto text-sm md:text-lg transition ease-in-out delay-75 hover:bg-stone-500 hover:text-white duration-300 rounded font-bold"
               onClick={closeModal}
