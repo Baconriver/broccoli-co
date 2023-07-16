@@ -31,7 +31,7 @@ test("should open/close the modal", async () => {
   // eslint-disable-next-line
   const backdrop = document.querySelector(".MuiModal-backdrop");
   expect(modal).toBeInTheDocument();
-  fireEvent.click(backdrop);
+  fireEvent.click(backdrop!);
 
   expect(modal).not.toBeInTheDocument();
 });

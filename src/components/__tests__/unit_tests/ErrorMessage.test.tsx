@@ -6,7 +6,8 @@ afterEach(() => {
 });
 
 test("should render ErrorMessage component", () => {
-  render(<ErrorMessage />);
+  const message = "test";
+  render(<ErrorMessage message={message} />);
   const errorElement = screen.getByTestId("error-message");
   expect(errorElement).toBeInTheDocument();
 });

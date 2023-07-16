@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen, cleanup, waitFor, act } from "@testing-library/react";
+import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import ModalContent from "../../ModalContent";
 import user from "@testing-library/user-event";
 
@@ -7,14 +6,16 @@ afterEach(() => {
   cleanup();
 });
 
+const setup = () => render(<ModalContent handleClose={() => {}} />);
+
 test("should render ModalContent component", () => {
-  render(<ModalContent />);
+  setup();
   const modalContent = screen.getByTestId("modal-content");
   expect(modalContent).toBeInTheDocument();
 });
 
 test("should contain correct elements in ModalContent by default", () => {
-  render(<ModalContent />);
+  setup();
   const modalContentTitle = screen.getByTestId("modal-content-title");
   const fullNameInput = screen.getByTestId("input-full-name");
   const emailInput = screen.getByTestId("input-email");
@@ -29,7 +30,7 @@ test("should contain correct elements in ModalContent by default", () => {
 });
 
 test("should display required validation", async () => {
-  render(<ModalContent />);
+  setup();
   const button = screen.getByTestId("modal-button");
   await user.click(button);
   const errorMessages = await screen.findAllByTestId("error-message");
@@ -39,7 +40,7 @@ test("should display required validation", async () => {
 });
 
 test("should display full name input field less 3 characters validation", async () => {
-  render(<ModalContent />);
+  setup();
   const fullNameInput = screen.getByTestId("input-full-name");
   await user.type(fullNameInput, "ab");
   await user.tab();
@@ -50,7 +51,7 @@ test("should display full name input field less 3 characters validation", async 
 });
 
 test("should display full name input field over 35 characters validation", async () => {
-  render(<ModalContent />);
+  setup();
   const fullNameInput = screen.getByTestId("input-full-name");
   await user.type(fullNameInput, "asdfasdfasdfasdfasdfasdfadsfasdfasdf");
   await user.tab();
@@ -61,7 +62,7 @@ test("should display full name input field over 35 characters validation", async
 });
 
 test("should display email validation", async () => {
-  render(<ModalContent />);
+  setup();
   const emailInput = screen.getByTestId("input-email");
   await user.type(emailInput, "asdfasdf");
   await user.tab();
@@ -72,7 +73,7 @@ test("should display email validation", async () => {
 });
 
 test("should display confirm email validation", async () => {
-  render(<ModalContent />);
+  setup();
   const emailInput = screen.getByTestId("input-email");
   const confirmEmailInput = screen.getByTestId("input-confirm-email");
   await user.type(emailInput, "test@gmail.com");
